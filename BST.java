@@ -151,7 +151,7 @@ public class BST<E extends Comparable<E>> extends AbstractTree<E> {
         return list; // Return an array list of nodes
     }
 
-    @Override /*
+     /*
                * Delete an element from the binary search tree.
                * Return true if the element is deleted successfully.
                * Return false if the element is not in the tree.

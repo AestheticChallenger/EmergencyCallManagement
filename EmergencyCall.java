@@ -14,7 +14,7 @@ public class EmergencyCall {
     private String startTime;
     private String emergencyType; // medical, rescue, fire, accident,
     private String urgencyLevel;
-    private EmergencyCall relatedCall; // variabe
+    private String relatedCallID; // variabe
     private Ambulance[] ambulancesAssigned;
     private String status;
     private int callDuration;
@@ -37,7 +37,7 @@ public class EmergencyCall {
 
     // If Related to another call
     public EmergencyCall(String callID, int phoneNumber, String name, double location, String startTime,
-            String emergencyType, String urgencyLevel, EmergencyCall relatedCall, String status, int callDuration,
+            String emergencyType, String urgencyLevel, String relatedCallID, String status, int callDuration,
             String notes) {
         this.callID = callID;
         this.phoneNumber = phoneNumber;
@@ -46,7 +46,7 @@ public class EmergencyCall {
         this.startTime = startTime;
         this.emergencyType = emergencyType;
         this.urgencyLevel = urgencyLevel;
-        this.relatedCall = relatedCall;
+        this.relatedCallID = relatedCallID;
         this.status = status;
         this.callDuration = callDuration;
         this.notes = notes;
@@ -80,7 +80,7 @@ public class EmergencyCall {
     public String relatedCallToString() {
         return "EmergencyCall [callID=" + callID + ", phoneNumber=" + phoneNumber + ", name=" + name + ", location="
                 + location + ", startTime=" + startTime + ", emergencyType=" + emergencyType + ", urgencyLevel="
-                + urgencyLevel + ", relatedCall=" + relatedCall + ", ambulancesAssigned="
+                + urgencyLevel + ", relatedCallID=" + relatedCallID + ", ambulancesAssigned="
                 + Arrays.toString(ambulancesAssigned) + ", status=" + status + ", callDuration=" + callDuration
                 + ", notes=" + notes + "]\n";
     }
@@ -88,7 +88,7 @@ public class EmergencyCall {
     public String resolvedCalltoString() {
         return "EmergencyCall [callID=" + callID + ", phoneNumber=" + phoneNumber + ", name=" + name + ", location="
                 + location + ", startTime=" + startTime + ", emergencyType=" + emergencyType + ", urgencyLevel="
-                + urgencyLevel + ", relatedCall=" + relatedCall + ", ambulancesAssigned="
+                + urgencyLevel + ", relatedCallID=" + relatedCallID + ", ambulancesAssigned="
                 + Arrays.toString(ambulancesAssigned) + ", status=" + status + ", callDuration=" + callDuration
                 + ", notes=" + notes + "]\n";
     }   
@@ -149,12 +149,12 @@ public class EmergencyCall {
         this.urgencyLevel = urgencyLevel;
     }
 
-    public EmergencyCall getRelatedCall() {
-        return relatedCall;
+    public String getRelatedCall() {
+        return relatedCallID;
     }
 
-    public void setRelatedCalls(EmergencyCall relatedCall) {
-        this.relatedCall = relatedCall;
+    public void setRelatedCalls(String relatedCallID) {
+        this.relatedCallID = relatedCallID;
     }
 
     public Ambulance[] getAmbulancesAssigned() {

@@ -16,4 +16,6 @@ public abstract class AbstractTree<E> implements Tree<E> {
     public boolean isEmpty() {
         return getSize() == 0;
     }
+
+    
 }

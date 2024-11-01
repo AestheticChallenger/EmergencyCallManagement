@@ -13,7 +13,7 @@ public interface Tree<E> extends Iterable<E> {
      * Delete the specified element from the tree.
      * Return true if the element is deleted successfully.
      */
-    public boolean delete(E e);
+    // public boolean delete(E e);
 
     public void inorder();
 
