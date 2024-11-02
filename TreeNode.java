@@ -1,10 +1,11 @@
-
 public class TreeNode<E extends Comparable<E>> {
-    protected E element;
-    protected TreeNode<E> left, right;
+    E element;
+    String color;
+    TreeNode<E> left = null, right = null, parent = null;
 
-    public TreeNode(E e) {
-        element = e;
+    public TreeNode(E element) {
+        this.element = element;
+        this.color = "RED";
     }
 
     public boolean hasLeft() {
@@ -22,5 +23,4 @@ public class TreeNode<E extends Comparable<E>> {
     public boolean isLeaf() {
         return left == null && right == null;
     }
-
 }

@@ -1,9 +1,18 @@
 
 public class Ambulance {
+    private int ambulanceID;
     private int numberOfParamedics;
     private String currentLocation;
     private double calculatedDistanceFromTheCall;
     private boolean isAvailable = true;
+
+    public Ambulance(int ambulanceID, String currentLocation, int numberOfParamedics) {
+        this.ambulanceID = ambulanceID;
+        this.currentLocation = currentLocation;
+        this.numberOfParamedics = numberOfParamedics;
+    }
+
+
 
     public int getNumberOfParamedics() {
         return numberOfParamedics;
@@ -41,10 +50,12 @@ public class Ambulance {
         this.isAvailable = false;
     }
 
-    
+    public int getAmbulanceID() {
+        return ambulanceID;
+    }
 
+    public void setAmbulanceID(int ambulanceID) {
+        this.ambulanceID = ambulanceID;
+    }
 
-    
-
-    
 }

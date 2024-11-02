@@ -5,12 +5,12 @@ import java.util.Arrays;
  * Aysha - 1088000
  * Mehejet - 10
  */
-public class EmergencyCall {
-    private String callID; // automatically generated
-    private int phoneNumber; // automatically found using math.random
+public class EmergencyCall implements Comparable<EmergencyCall> {
+    private int callID; // automatically generated
+    private String phoneNumber; // automatically found using math.random
     private String name;
     // MAth.random, for x ,y
-    private double location;
+    private String location;
     private String startTime;
     private String emergencyType; // medical, rescue, fire, accident,
     private String urgencyLevel;
@@ -21,8 +21,8 @@ public class EmergencyCall {
     private String notes;
 
     // New Call / ongoing calls
-    public EmergencyCall(Ambulance[] ambulancesAssigned, String callID, String emergencyType, double location,
-            String name, String notes, int phoneNumber, String startTime, String status, String urgencyLevel) {
+    public EmergencyCall(Ambulance[] ambulancesAssigned, int callID, String emergencyType, String location,
+            String name, String notes, String phoneNumber, String startTime, String status, String urgencyLevel) {
         this.ambulancesAssigned = ambulancesAssigned;
         this.callID = callID;
         this.emergencyType = emergencyType;
@@ -36,7 +36,7 @@ public class EmergencyCall {
     }
 
     // If Related to another call
-    public EmergencyCall(String callID, int phoneNumber, String name, double location, String startTime,
+    public EmergencyCall(int callID, String phoneNumber, String name, String location, String startTime,
             String emergencyType, String urgencyLevel, String relatedCallID, String status, int callDuration,
             String notes) {
         this.callID = callID;
@@ -53,7 +53,7 @@ public class EmergencyCall {
     }
 
     // if call ended
-    public EmergencyCall(String callID, int phoneNumber, String name, double location, String startTime,
+    public EmergencyCall(int callID, String phoneNumber, String name, String location, String startTime,
             String emergencyType, String urgencyLevel, Ambulance[] ambulancesAssigned, String status, int callDuration,
             String notes) {
         this.callID = callID;
@@ -93,19 +93,19 @@ public class EmergencyCall {
                 + ", notes=" + notes + "]\n";
     }   
 
-    public String getCallID() {
+    public int getCallID() {
         return callID;
     }
 
-    public void setCallID(String callID) {
+    public void setCallID(int callID) {
         this.callID = callID;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
@@ -117,11 +117,11 @@ public class EmergencyCall {
         this.name = name;
     }
 
-    public double getLocation() {
+    public String getLocation() {
         return location;
     }
 
-    public void setLocation(double location) {
+    public void setLocation(String location) {
         this.location = location;
     }
 
@@ -187,6 +187,11 @@ public class EmergencyCall {
 
     public void setNotes(String notes) {
         this.notes = notes;
+    }
+
+    @Override
+    public int compareTo(EmergencyCall other) {
+        return Integer.compare(this.callID, other.callID);
     }
 
 }

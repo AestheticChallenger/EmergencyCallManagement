@@ -1,9 +1,6 @@
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-// import java.util.Queue;
-
 public class RedBlackTree<E extends Comparable<E>> extends AbstractTree<E> {
     protected TreeNode<E> root;
     protected int size = 0;
@@ -29,99 +26,32 @@ public class RedBlackTree<E extends Comparable<E>> extends AbstractTree<E> {
 
     public void print() {
         int maxLevel = maxLevel(this.root);
-        int maxWidth = (int) Math.pow(2, maxLevel) - 1; // Max width based on height
         List<TreeNode<E>> nodes = new ArrayList<>();
         nodes.add(this.root);
-        printPyramid(nodes, 1, maxWidth);
+        printPyramid(nodes, 1, maxLevel);
     }
 
-    private void printPyramid(List<TreeNode<E>> nodes, int level, int maxWidth) {
-
-        // private void printPyramid(List<TreeNode<E>> nodes, int level, int maxWidth) {
-        // // ... (rest of the method remains the same)
-
-        // int nodeWidth = 5; // Adjust the node width as needed
-        // int branchLength = 3; // Adjust the branch length as needed
-
-        // // Print the current level nodes with appropriate spaces
-        // printSpaces(firstSpaces);
-
-        // for (TreeNode<E> node : nodes) {
-        // if (node != NIL) {
-        // // Print the node with color and spacing
-        // System.out.printf("%" + nodeWidth + "s", colorCode + node.element + RESET);
-        // newNodes.add(node.left);
-        // newNodes.add(node.right);
-        // } else {
-        // // Print empty space
-        // printSpaces(nodeWidth);
-        // newNodes.add(NIL);
-        // newNodes.add(NIL);
-        // }
-        // printSpaces(betweenSpaces);
-        // }
-        // System.out.println();
-
-        // // Print branches under the current level of nodes
-        // printBranches(nodes, firstSpaces, betweenSpaces, nodeWidth, branchLength);
-
-        // // ... (rest of the method remains the same)
-        // }
-
-        // private void printBranches(List<TreeNode<E>> nodes, int firstSpaces, int
-        // betweenSpaces, int nodeWidth, int branchLength) {
-        // int branchOffset = firstSpaces + nodeWidth / 2;
-
-        // for (TreeNode<E> node : nodes) {
-        // printSpaces(branchOffset - branchLength);
-
-        // if (node == null || node == NIL) {
-        // printSpaces(betweenSpaces + nodeWidth);
-        // continue;
-        // }
-
-        // // Print left branch
-        // printSpaces(branchLength / 2);
-        // System.out.print("/");
-        // printSpaces(branchLength / 2);
-
-        // printSpaces(betweenSpaces - branchLength);
-
-        // // Print right branch
-        // printSpaces(branchLength / 2);
-        // System.out.print("\\");
-        // printSpaces(branchLength / 2);
-
-        // printSpaces(betweenSpaces);
-        // }
-        // System.out.println();
-        // }
-
-        if (nodes.isEmpty() || isAllElementsNil(nodes)) {
+    private void printPyramid(List<TreeNode<E>> nodes, int level, int maxLevel) {
+        if (nodes.isEmpty() || isAllElementsNil(nodes))
             return;
-        }
 
-        int firstSpaces = (maxWidth / (int) Math.pow(2, level)) - 1; // Calculate leading spaces for the first node
-        int betweenSpaces = (maxWidth / (int) Math.pow(2, level + 1)) - 1; // Spaces between nodes
-        int nodeWidth = 5; // Adjust the node width as needed
-        int branchLength = 3; // Adjust the branch length as needed
+        int floor = maxLevel - level;
+        int edgeLines = (int) Math.pow(2, Math.max(floor - 1, 0));
+        int firstSpaces = (int) Math.pow(2, floor) - 1;
+        int betweenSpaces = (int) Math.pow(2, floor + 1) - 1;
 
-        // Print the current level nodes with appropriate spaces
+        // Adjust space for multi-digit numbers dynamically
         printSpaces(firstSpaces);
 
         List<TreeNode<E>> newNodes = new ArrayList<>();
         for (TreeNode<E> node : nodes) {
             if (node != NIL) {
-
                 String colorCode = node.color.equals("BLACK") ? BLACK : RED;
-
-                // Print the node with color and spacing
-                System.out.printf("%" + nodeWidth + "s", colorCode + node.element + RESET);
+                System.out.print(colorCode + node.element + RESET);
                 newNodes.add(node.left);
                 newNodes.add(node.right);
             } else {
-                // Print empty space
-                printSpaces(nodeWidth);
+                System.out.print("  "); // Placeholder for empty space
                 newNodes.add(NIL);
                 newNodes.add(NIL);
             }
@@ -129,39 +59,35 @@ public class RedBlackTree<E extends Comparable<E>> extends AbstractTree<E> {
         }
         System.out.println();
 
-        // Print branches under the current level of nodes
-        printBranches(nodes, firstSpaces, betweenSpaces, nodeWidth, branchLength);
+        // Print branch lines connecting nodes
+        for (int i = 1; i <= edgeLines; i++) {
+            for (int j = 0; j < nodes.size(); j++) {
+                printSpaces(firstSpaces - i);
+                if (nodes.get(j) == NIL) {
+                    printSpaces(edgeLines + edgeLines + i + 1);
+                    continue;
+                }
 
-        // Move to the next level of nodes
-        printPyramid(newNodes, level + 1, maxWidth);
-    }
+                // Print '/' for left child and '\' for right child
+                if (nodes.get(j).left != NIL) {
+                    System.out.print("/");
+                } else {
+                    printSpaces(1);
+                }
 
-    private void printBranches(List<TreeNode<E>> nodes, int firstSpaces, int betweenSpaces, int nodeWidth,
-            int branchLength) {
-        int branchOffset = firstSpaces + 1; // Adjust the branch offset for alignment
-        for (TreeNode<E> node : nodes) {
-            printSpaces(branchOffset - branchLength);
+                printSpaces(i + i - 1);
 
-            if (node == null || node == NIL) {
-                printSpaces(betweenSpaces + nodeWidth);
-                continue;
+                if (nodes.get(j).right != NIL) {
+                    System.out.print("\\");
+                } else {
+                    printSpaces(1);
+                }
+
+                printSpaces(edgeLines + edgeLines - i);
             }
-
-            // Print left branch
-            printSpaces(branchLength / 2);
-            System.out.print("/");
-            printSpaces(branchLength / 2);
-
-            printSpaces(betweenSpaces - branchLength);
-
-            // Print right branch
-            printSpaces(branchLength / 2);
-            System.out.print("\\");
-            printSpaces(branchLength / 2);
-
-            printSpaces(betweenSpaces);
+            System.out.println();
         }
-        System.out.println();
+        printPyramid(newNodes, level + 1, maxLevel);
     }
 
     private void printSpaces(int count) {
@@ -171,17 +97,15 @@ public class RedBlackTree<E extends Comparable<E>> extends AbstractTree<E> {
     }
 
     private int maxLevel(TreeNode<E> node) {
-        if (node == NIL) {
+        if (node == NIL)
             return 0;
-        }
         return Math.max(maxLevel(node.left), maxLevel(node.right)) + 1;
     }
 
     private boolean isAllElementsNil(List<TreeNode<E>> list) {
         for (TreeNode<E> node : list) {
-            if (node != NIL) {
+            if (node != NIL)
                 return false;
-            }
         }
         return true;
     }
@@ -209,80 +133,6 @@ public class RedBlackTree<E extends Comparable<E>> extends AbstractTree<E> {
         return node;
     }
 
-    // @Override
-    // public boolean insert(E e) {
-    // TreeNode<E> newNode = createNewNode(e);
-
-    // if (root == NIL) {
-    // root = newNode;
-    // root.color = "BLACK";
-    // } else {
-    // TreeNode<E> parent = null;
-    // TreeNode<E> current = root;
-
-    // while (current != NIL) {
-    // parent = current;
-    // if (e.compareTo(current.element) < 0) {
-    // current = current.left;
-    // } else if (e.compareTo(current.element) > 0) {
-    // current = current.right;
-    // } else {
-    // return false;
-    // }
-    // }
-
-    // newNode.parent = parent;
-    // if (e.compareTo(parent.element) < 0) {
-    // parent.left = newNode;
-    // } else {
-    // parent.right = newNode;
-    // }
-
-    // fixInsert(newNode);
-    // }
-    // size++;
-    // return true;
-    // }
-
-    // private void fixInsert(TreeNode<E> k) {
-    // while (k.parent.color.equals("RED")) {
-    // if (k.parent == k.parent.parent.left) {
-    // TreeNode<E> uncle = k.parent.parent.right;
-    // if (uncle.color.equals("RED")) {
-    // k.parent.color = "BLACK";
-    // uncle.color = "BLACK";
-    // k.parent.parent.color = "RED";
-    // k = k.parent.parent;
-    // } else {
-    // if (k == k.parent.right) {
-    // k = k.parent;
-    // leftRotate(k);
-    // }
-    // k.parent.color = "BLACK";
-    // k.parent.parent.color = "RED";
-    // rightRotate(k.parent.parent);
-    // }
-    // } else {
-    // TreeNode<E> uncle = k.parent.parent.left;
-    // if (uncle.color.equals("RED")) {
-    // k.parent.color = "BLACK";
-    // uncle.color = "BLACK";
-    // k.parent.parent.color = "RED";
-    // k = k.parent.parent;
-    // } else {
-    // if (k == k.parent.left) {
-    // k = k.parent;
-    // rightRotate(k);
-    // }
-    // k.parent.color = "BLACK";
-    // k.parent.parent.color = "RED";
-    // leftRotate(k.parent.parent);
-    // }
-    // }
-    // }
-    // root.color = "BLACK";
-    // }
-
     @Override
     public boolean insert(E e) {
         TreeNode<E> newNode = createNewNode(e);
@@ -290,7 +140,7 @@ public class RedBlackTree<E extends Comparable<E>> extends AbstractTree<E> {
         if (root == NIL) {
             root = newNode;
             root.color = "BLACK";
-            root.parent = null; // Ensure root's parent is null
+            root.parent = null;
         } else {
             TreeNode<E> parent = null;
             TreeNode<E> current = root;
@@ -306,7 +156,7 @@ public class RedBlackTree<E extends Comparable<E>> extends AbstractTree<E> {
                 }
             }
 
-            newNode.parent = parent; // Set the parent of the new node
+            newNode.parent = parent;
             if (e.compareTo(parent.element) < 0) {
                 parent.left = newNode;
             } else {
@@ -320,7 +170,7 @@ public class RedBlackTree<E extends Comparable<E>> extends AbstractTree<E> {
     }
 
     private void fixInsert(TreeNode<E> k) {
-        while (k.parent != null && k.parent.color.equals("RED")) { // Check if k.parent is null
+        while (k.parent != null && k.parent.color.equals("RED")) {
             if (k.parent == k.parent.parent.left) {
                 TreeNode<E> uncle = k.parent.parent.right;
                 if (uncle.color.equals("RED")) {

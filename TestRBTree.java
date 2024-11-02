@@ -1,3 +1,4 @@
+
 // public class TestRBTree {
 //     public static void main(String[] args) {
 //         RedBlackTree_Integer tree1, tree2;
@@ -6,8 +7,6 @@
 //         tree1 = new RedBlackTree_Integer(intArray);
 //         tree2 = new RedBlackTree_Integer(intArray);
 //         // tree2.(4);
-
-        
 
 //         System.out.print("InOrder : ");
 //         tree1.inorder();
@@ -23,5 +22,5 @@
 //         tree1.print();
 
 //     }
-    
+
 // }

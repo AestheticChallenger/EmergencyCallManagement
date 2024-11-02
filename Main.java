@@ -1,17 +1,23 @@
 import java.io.File;
 import java.io.FileWriter;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
-
     static Scanner input = new Scanner(System.in);
 
+    // creating tree for each risk levels
+    static RedBlackTree LowUrgencyLevelActiveCalls = new RedBlackTree(null);
+    static RedBlackTree MediumUrgencyLevelActiveCalls = new RedBlackTree(null);
+    static RedBlackTree HighUrgencyLevelActiveCalls = new RedBlackTree(null);
+
+    // static Ambulance 
     public static void main(String[] args) {
         // creates all the folders and files
         createFoldersAndFiles();
+        displayMainMenu();
+        // I will do the option thing here
 
-        // gets the phone number automatically
-        System.out.println(getPhoneNumber()); // checking if phone number works
     }
 
     public static void displayMainMenu() {
@@ -51,8 +57,128 @@ public class Main {
     }
 
     // change the void type to anything
+
     public static void registerNewCall() {
-        // throw new UnsupportedOperationException("Not supported yet.");
+        int callID = (int) ((Math.random() * 10000) - 1000);
+
+        System.out.print("Enter Name: ");
+        String name = input.nextLine();
+
+        String phoneNumber = getPhoneNumber();
+
+        // Math.random() *
+
+        Random random = new Random();
+        double location = 10 + (50 - 10) * random.nextDouble();// hssjdf
+
+        String locationCategory;
+        if (location >= 10 && location < 15) {
+            locationCategory = "Khalifa City";
+        } else if (location >= 15 && location < 20) {
+            locationCategory = "Musaffah";
+        } else if (location >= 20 && location < 25) {
+            locationCategory = "Al Reem Island";
+        } else if (location >= 25 && location < 30) {
+            locationCategory = "Yas Island";
+        } else if (location >= 30 && location < 35) {
+            locationCategory = "Shahama";
+        } else if (location >= 35 && location < 40) {
+            locationCategory = "Khalidiyah";
+        } else if (location >= 40 && location < 45) {
+            locationCategory = "Mohammed Bin Zayed City";
+        } else if (location >= 45 && location < 50) {
+            locationCategory = "Bani Yas City";
+        } else {
+            locationCategory = "Unknown Location";
+        }
+
+        String locationName = "";
+        switch (locationName) {
+
+            case "Khalifa City":
+                locationName = "Khalifa City";
+                break;
+
+            case "Musaffah":
+                locationName = "Musaffah";
+                break;
+
+            case "Al Reem Island":
+                locationName = "Al Reem Island";
+                break;
+
+            case "Yas Island":
+                locationName = "Yas Island";
+                break;
+
+            case "Shahama":
+                locationName = "Shahama";
+                break;
+
+            case "Khalidiyah":
+                locationName = "Khalidiyah";
+                break;
+
+            case "Mohammed Bin Zayed City":
+                locationName = "Mohammed Bin Zayed City";
+                break;
+
+            case "Bani Yas City":
+                locationName = "Bani Yas City";
+                break;
+
+            default:
+                locationName = "Unknown Location";
+                break;
+        }
+
+        System.out.print("Enter Emergency type(Medical/Rescue/Fire/Accident): ");
+        String emergencyType = input.nextLine();
+
+        System.out.print("Enter Urgency Level: ");
+        String urgencyLevel = input.nextLine();
+
+        System.out.print("Enter Location: " + locationCategory + "(" + String.format(locationName, "%.2f") + ")");
+
+        System.out.print("Enter status (Active/Resolved): ");
+        String status = input.nextLine();
+
+        System.out.print("Enter Start Time: ");
+        String startTime = getStartTime();
+
+        System.out.print("Enter Notes: ");
+        String notes = input.nextLine();
+        Ambulance[] ambulanceAssigned = {};
+
+        String relatedCallID = null;
+        System.out.print("Is this call related to another call? (yes/no): ");
+        String isRelated = input.nextLine();
+        if (isRelated.equalsIgnoreCase("yes")) {
+            System.out.print("Enter related call ID: ");
+            relatedCallID = input.nextLine();
+        }
+
+        EmergencyCall newCall1 = new EmergencyCall(ambulanceAssigned, callID, emergencyType, locationName, name, notes,
+                phoneNumber, startTime, status, urgencyLevel);
+
+        switch (urgencyLevel) {
+            case "low":
+                LowUrgencyLevelActiveCalls.insert(newCall1);
+                LowUrgencyLevelActiveCalls.print();
+                break;
+
+            case "medium":
+                MediumUrgencyLevelActiveCalls.insert(newCall1);
+                MediumUrgencyLevelActiveCalls.print();
+                break;
+
+            case "high":
+                HighUrgencyLevelActiveCalls.insert(newCall1);
+                HighUrgencyLevelActiveCalls.print();
+                break;
+        }
+        System.out.print("Emergency call registered successfully!");
+
     }
 
     public static void SearchPreviousCalls() {
@@ -75,7 +201,6 @@ public class Main {
                 countryCode = (int) (Math.random() * 999);
         }
 
-
         return "+" + countryCode + " " + phoneNumber;
     }
 
@@ -91,9 +216,12 @@ public class Main {
                 "Mohammed Bin Zayed City",
                 "Bani Yas City"
         };
+        // if (!mainFolder.mkdirs()) {
+
+        // }
 
         for (String folderName : locationNames) {
-            File subFolder = new File(mainFolder + folderName);
+            File subFolder = new File(mainFolder + "/" + folderName);
             if (!subFolder.exists()) {
                 subFolder.mkdirs();
                 File resolvedCalls = new File(subFolder, "Resolved_Calls.csv");
@@ -113,7 +241,7 @@ public class Main {
         }
     }
 
-    public  static void showAllActiveCalls() {
+    public static void showAllActiveCalls() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
@@ -121,5 +249,8 @@ public class Main {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    private static String getStartTime() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 
 }
