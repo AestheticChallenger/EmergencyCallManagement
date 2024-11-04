@@ -1,4 +1,10 @@
-public abstract class AbstractTree<E> implements Tree<E> {
+/**
+ * Afrah - 1090111
+ * Aysha - 1088000
+ * Mehejet - 1090225
+ */
+
+public abstract class AbstractTree_Sec77_G7<E> implements Tree_Sec77_G7<E> {
 
     @Override /** Inorder traversal from the root */
     public void inorder() {

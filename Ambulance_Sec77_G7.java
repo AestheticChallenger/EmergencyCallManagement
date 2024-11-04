@@ -1,18 +1,37 @@
 
-public class Ambulance {
+/**
+ * Afrah - 1090111
+ * Aysha - 1088000
+ * Mehejet - 1090225
+ */
+
+import java.util.ArrayList;
+
+public final class Ambulance_Sec77_G7 implements Comparable<Ambulance_Sec77_G7> {
     private int ambulanceID;
     private int numberOfParamedics;
     private String currentLocation;
     private double calculatedDistanceFromTheCall;
     private boolean isAvailable = true;
+    ArrayList<Record_Sec77_G7> recordsOfTheCallsAttended = new ArrayList<>();
 
-    public Ambulance(int ambulanceID, String currentLocation, int numberOfParamedics) {
+    public Ambulance_Sec77_G7(int ambulanceID, String currentLocation, int numberOfParamedics) {
         this.ambulanceID = ambulanceID;
         this.currentLocation = currentLocation;
         this.numberOfParamedics = numberOfParamedics;
     }
 
+    public Ambulance_Sec77_G7(int ambulanceID, int numberOfParamedics, String currentLocation,
+            double calculatedDistanceFromTheCall) {
+        setAmbulanceID(ambulanceID);
+        setNumberOfParamedics(numberOfParamedics);
+        setCurrentLocation(currentLocation);
+        setCalculatedDistanceFromTheCall(calculatedDistanceFromTheCall);
+    }
 
+    public Ambulance_Sec77_G7() {
+
+    }
 
     public int getNumberOfParamedics() {
         return numberOfParamedics;
@@ -56,6 +75,16 @@ public class Ambulance {
 
     public void setAmbulanceID(int ambulanceID) {
         this.ambulanceID = ambulanceID;
+    }
+
+    public void addRecords(Record_Sec77_G7 record) {
+        recordsOfTheCallsAttended.add(record);
+    }
+
+    @Override
+    public int compareTo(Ambulance_Sec77_G7 other) {
+        // TODO Auto-generated method stub
+        return Double.compare(this.calculatedDistanceFromTheCall, other.calculatedDistanceFromTheCall);
     }
 
 }

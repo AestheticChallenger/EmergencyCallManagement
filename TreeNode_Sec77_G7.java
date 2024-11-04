@@ -1,10 +1,15 @@
+/**
+ * Afrah - 1090111
+ * Aysha - 1088000
+ * Mehejet - 10
+ */
 
-public class TreeNode<E extends Comparable<E>> {
+public class TreeNode_Sec77_G7<E extends Comparable<E>> {
     E element;
     String color;
-    TreeNode<E> left = null, right = null, parent = null;
+    TreeNode_Sec77_G7<E> left = null, right = null, parent = null;
 
-    public TreeNode(E element) {
+    public TreeNode_Sec77_G7(E element) {
         this.element = element;
         this.color = "RED";
     }
@@ -30,7 +35,7 @@ public class TreeNode<E extends Comparable<E>> {
     }
 
     // gets the other child of the parent node
-    public TreeNode<E> getSibling() {
+    public TreeNode_Sec77_G7<E> getSibling() {
         if (parent == null) {
             return null;
         }
@@ -42,8 +47,8 @@ public class TreeNode<E extends Comparable<E>> {
         return parent.left;
     }
 
-    public TreeNode<E> getUncle() {
-        TreeNode<E> grandparent = parent.parent;
+    public TreeNode_Sec77_G7<E> getUncle() {
+        TreeNode_Sec77_G7<E> grandparent = parent.parent;
         if (parent == null || grandparent == null)
             return null;
 
@@ -58,7 +63,7 @@ public class TreeNode<E extends Comparable<E>> {
         return (hasLeft() && left.color == "RED") || (hasRight() && right.color == "RED");
     }
 
-     void moveDown(TreeNode<E> newNode) {
+     void moveDown(TreeNode_Sec77_G7<E> newNode) {
         if (parent != null) {
             if (isLeftChild())
                 parent.left = newNode;

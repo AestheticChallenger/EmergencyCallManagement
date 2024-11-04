@@ -1,11 +1,12 @@
-import java.util.Arrays;
-
 /**
  * Afrah - 1090111
  * Aysha - 1088000
  * Mehejet - 10
  */
-public class EmergencyCall implements Comparable<EmergencyCall> {
+
+import java.util.Arrays;
+
+public class EmergencyCall_Sec77_G7 implements Comparable<EmergencyCall_Sec77_G7> {
     private int callID; // automatically generated
     private String phoneNumber; // automatically found using math.random
     private String name;
@@ -15,28 +16,14 @@ public class EmergencyCall implements Comparable<EmergencyCall> {
     private String emergencyType; // medical, rescue, fire, accident,
     private String urgencyLevel;
     private String relatedCallID; // variabe
-    private Ambulance[] ambulancesAssigned;
+    private Ambulance_Sec77_G7[] ambulancesAssigned;
     private String status;
     private int callDuration;
     private String notes;
 
-    // New Call / ongoing calls
-    public EmergencyCall(Ambulance[] ambulancesAssigned, int callID, String emergencyType, String location,
-            String name, String notes, String phoneNumber, String startTime, String status, String urgencyLevel) {
-        this.ambulancesAssigned = ambulancesAssigned;
-        this.callID = callID;
-        this.emergencyType = emergencyType;
-        this.location = location;
-        this.name = name;
-        this.notes = notes;
-        this.phoneNumber = phoneNumber;
-        this.startTime = startTime;
-        this.status = status;
-        this.urgencyLevel = urgencyLevel;
-    }
 
     // If Related to another call
-    public EmergencyCall(int callID, String phoneNumber, String name, String location, String startTime,
+    public EmergencyCall_Sec77_G7(int callID, String phoneNumber, String name, String location, String startTime,
             String emergencyType, String urgencyLevel, String relatedCallID, String status, int callDuration,
             String notes) {
         this.callID = callID;
@@ -53,8 +40,8 @@ public class EmergencyCall implements Comparable<EmergencyCall> {
     }
 
     // if call ended
-    public EmergencyCall(int callID, String phoneNumber, String name, String location, String startTime,
-            String emergencyType, String urgencyLevel, Ambulance[] ambulancesAssigned, String status, int callDuration,
+    public EmergencyCall_Sec77_G7(int callID, String phoneNumber, String name, String location, String startTime,
+            String emergencyType, String urgencyLevel, Ambulance_Sec77_G7[] ambulancesAssigned, String status, int callDuration,
             String notes) {
         this.callID = callID;
         this.phoneNumber = phoneNumber;
@@ -71,26 +58,25 @@ public class EmergencyCall implements Comparable<EmergencyCall> {
     
     @Override
     public String toString() {
-        return "EmergencyCall [callID=" + callID + ", phoneNumber=" + phoneNumber + ", name=" + name + ", location="
-                + location + ", startTime=" + startTime + ", emergencyType=" + emergencyType + ", urgencyLevel="
-                + urgencyLevel + ", ambulancesAssigned=" + Arrays.toString(ambulancesAssigned) + ", status=" + status
-                + ", notes=" + notes + "]\n";
+        return  callID + ", " + phoneNumber + ", " + name + ", "
+                + location + ", " + startTime + ", " + emergencyType + ", "
+                + urgencyLevel + ", " + Arrays.toString(ambulancesAssigned) + ", " + status
+                + ", " + notes + "]\n";
     }
 
     public String relatedCallToString() {
-        return "EmergencyCall [callID=" + callID + ", phoneNumber=" + phoneNumber + ", name=" + name + ", location="
-                + location + ", startTime=" + startTime + ", emergencyType=" + emergencyType + ", urgencyLevel="
-                + urgencyLevel + ", relatedCallID=" + relatedCallID + ", ambulancesAssigned="
-                + Arrays.toString(ambulancesAssigned) + ", status=" + status + ", callDuration=" + callDuration
-                + ", notes=" + notes + "]\n";
+        return  callID + ", " + phoneNumber + ", " + name + ", "
+                + location + ", " + startTime + ", " + emergencyType + ", "
+                + urgencyLevel + ", relatedCallID=" + relatedCallID + ", "
+                + Arrays.toString(ambulancesAssigned) + ", " + status + ", " + callDuration
+                + ", " + notes + "]\n";
     }
 
     public String resolvedCalltoString() {
-        return "EmergencyCall [callID=" + callID + ", phoneNumber=" + phoneNumber + ", name=" + name + ", location="
-                + location + ", startTime=" + startTime + ", emergencyType=" + emergencyType + ", urgencyLevel="
-                + urgencyLevel + ", relatedCallID=" + relatedCallID + ", ambulancesAssigned="
-                + Arrays.toString(ambulancesAssigned) + ", status=" + status + ", callDuration=" + callDuration
-                + ", notes=" + notes + "]\n";
+        return  callID + ", " + phoneNumber + ", " + name + ", " + location + ", " + startTime + ", " + emergencyType + ", "
+                + urgencyLevel + ", relatedCallID=" + relatedCallID + ", "
+                + Arrays.toString(ambulancesAssigned) + ", " + status + ", " + callDuration
+                + ", " + notes + "]\n";
     }   
 
     public int getCallID() {
@@ -157,11 +143,11 @@ public class EmergencyCall implements Comparable<EmergencyCall> {
         this.relatedCallID = relatedCallID;
     }
 
-    public Ambulance[] getAmbulancesAssigned() {
+    public Ambulance_Sec77_G7[] getAmbulancesAssigned() {
         return ambulancesAssigned;
     }
 
-    public void setAmbulancesAssigned(Ambulance[] ambulancesAssigned) {
+    public void setAmbulancesAssigned(Ambulance_Sec77_G7[] ambulancesAssigned) {
         this.ambulancesAssigned = ambulancesAssigned;
     }
 
@@ -190,7 +176,7 @@ public class EmergencyCall implements Comparable<EmergencyCall> {
     }
 
     @Override
-    public int compareTo(EmergencyCall other) {
+    public int compareTo(EmergencyCall_Sec77_G7 other) {
         return Integer.compare(this.callID, other.callID);
     }
 

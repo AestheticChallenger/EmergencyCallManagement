@@ -1,5 +1,10 @@
+/**
+ * Afrah - 1090111
+ * Aysha - 1088000
+ * Mehejet - 10
+ */
 
-public interface Tree<E> extends Iterable<E> {
+public interface Tree_Sec77_G7<E> extends Iterable<E> {
     /** Return true if the element is in the tree */
     public boolean search(E e);
 

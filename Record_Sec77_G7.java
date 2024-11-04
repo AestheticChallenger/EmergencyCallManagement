@@ -1,20 +1,26 @@
-public final class Record {
-    private String callID;
+/**
+ * Afrah - 1090111
+ * Aysha - 1088000
+ * Mehejet - 10
+ */
+
+public final class Record_Sec77_G7 {
+    private int callID;
     private int estimatedTime;
     private int actualTime;
 
-    public Record(String callID, int estimatedTime, int actualTime) {
+    public Record_Sec77_G7(int callID, int estimatedTime, int actualTime) {
         setCallID(callID);
         setEstimatedTime(estimatedTime);
         setActualTime(actualTime);
     }
     
 
-    public String getCallID() {
+    public int getCallID() {
         return callID;
     }
 
-    public void setCallID(String callID) {
+    public void setCallID(int callID) {
         this.callID = callID;
     }
 
