@@ -137,27 +137,35 @@ public class Main_Sec77_G7 {
         switch ((int) (location / 5)) {
             case 0:
                 locationCategory = "Khalifa City";
+                khalifaCityCounter++;
                 break;
             case 1:
                 locationCategory = "Musaffah";
+                musaffahCounter++;
                 break;
             case 2:
                 locationCategory = "Al Reem Island";
+                alReemIslandCounter++;
                 break;
             case 3:
                 locationCategory = "Yas Island";
+                yasIslandCounter++;
                 break;
             case 4:
                 locationCategory = "Shahama";
+                shahamaCounter++;
                 break;
             case 5:
                 locationCategory = "Khalidiyah";
+                khalidiyahCounter++;
                 break;
             case 6:
                 locationCategory = "Mohammed Bin Zayed City";
+                mohammedBinZayedCityCounter++;
                 break;
             case 7:
                 locationCategory = "Bani Yas City";
+                baniYasCityCounter++;
                 break;
         }
 
@@ -414,6 +422,7 @@ public class Main_Sec77_G7 {
                 Ambulance_Sec77_G7 assignedAmbulance[] = callToUpdate.getAmbulancesAssigned();
                 for (Ambulance_Sec77_G7 ambulance : assignedAmbulance) {
                     ambulance.recordsOfTheCallsAttended.add(new Record_Sec77_G7(callID, (int) (Math.random() * 20), (int) (Math.random() * 20)));
+                    ambulance.setAsAvailable();
                 }
 
                 // Remove the resolved call from the Red-Black Tree
